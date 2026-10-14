@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetPoint++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header" ng-controller="HeaderController">
+        <div class="header-container">
+            <div class="logo">
+                <h2>VetPoint<span>+</span></h2>
+            </div>
+
+            <nav class="navigation" ng-if="!auth.isLoggedIn">
+                <a href="index.html" class="active">Home</a>
+                <a href="features.html">Features</a>
+                <a href="ai_assistant.html">AI Assistant</a>
+                <a href="#">About</a>
+            </nav>
+
+            <nav class="navigation" ng-if="auth.isLoggedIn">
+                <a href="index.html" class="active">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">My Pets</a>
+                <a href="#">AI Assistant</a>
+                <a href="#">History</a>
+            </nav>
+
+            <div class="header-actions" ng-if="!auth.isLoggedIn">
+                <button class="login-bnt" ng-click="login()">Log in</button>
+                <button class="join-btn">Join Beta</button>
+            </div>     
+
+            <div class="header-actions" ng-if="auth.isLoggedIn">
+                <button class="notification-btn">🔔</button>
+
+                <button class="profile-btn">D</button>
+
+                <button class="login-bnt" ng-click="logout()">Logout</button>
+            </div>  
+        </div>
+    </header>
+
+    <main>  
+        <section class="assistant-chat">
+            <div class="assistant-empty">
+                <h1>How can I help with your pet?</h1>
+                <p>Describe your pet's symptoms, behavior or health concerns.</p>
+            </div>
+
+            <div class="chat-input">
+                <textarea id="text-chat" placeholder="Message VetPoint AI..."></textarea>
+
+                <button class="send-btn">↑</button>
+            </div>
+
+            <p class="messages-left">5 messages left</p>
+        </section>
+    </main>
+</body>
+</html>

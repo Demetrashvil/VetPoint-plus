@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetPoint+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="header" ng-controller="HeaderController">
+        <div class="header-container">
+            <div class="logo">
+                <h2>VetPoint<span>+</span></h2>
+            </div>
+
+            <nav class="navigation" ng-if="!auth.isLoggedIn">
+                <a href="index.html" class="active">Home</a>
+                <a href="features.html">Features</a>
+                <a href="ai_assistant.html">AI Assistant</a>
+                <a href="#">About</a>
+            </nav>
+
+            <nav class="navigation" ng-if="auth.isLoggedIn">
+                <a href="#" class="active">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">My Pets</a>
+                <a href="#">AI Assistant</a>
+                <a href="#">History</a>
+            </nav>
+
+            <div class="header-actions" ng-if="!auth.isLoggedIn">
+                <button class="login-bnt" ng-click="login()">Log in</button>
+                <button class="join-btn">Join Beta</button>
+            </div>     
+
+            <div class="header-actions" ng-if="auth.isLoggedIn">
+                <button class="notification-btn">🔔</button>
+
+                <button class="profile-btn">D</button>
+
+                <button class="login-bnt" ng-click="logout()">Logout</button>
+            </div>  
+        </div>
+    </section>
+
+    <section class="features-hero">
+        <div class="features-hero-text">
+            <h2>Everything you need to keep your pet healthy.</h2>
+
+            <p>Powerful tools designed to help you monitor your pet's health, understand symptoms, and organize medical records.</p>
+        </div>
+
+        <div class="feature-img">
+            <img src="img/baner/baner.jpeg" alt="baner">
+        </div>
+    </section>
+
+    <section class="main-features">
+        <div class="main-column">
+            <div class="main-cards">
+                <div class="main-cards-text">
+                    <p>AI Symptom Checker</p>
+
+                    <h2>Understand your pet's symptoms instantly.</h2>
+
+                    <span>Describe what your pet is experiencing and receive clear AI-powered guidance to help you understand possible causes and the next recommended steps.</span>
+
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>AI-powered guidance</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Health tracking</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Medical records</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Find trusted veterinarians</span>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="img/media-fuateres/media1.jpeg" alt="baner1">
+            </div>
+
+            <div class="main-cards">
+                <img src="img/media-fuateres/media1.jpeg" alt="baner1">
+
+                <div class="main-cards-text">
+                    <p>Medical Records</p>
+
+                    <h2>Keep every medical record organized.</h2>
+
+                    <span>Store vaccinations, laboratory results, medications and veterinary visits in one secure place.</span>
+
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Secure medical historye</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Vaccination tracking</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Easy record management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-cards">
+                <div class="main-cards-text">
+                    <p>Health Tracking</p>
+
+                    <h2>Track your pet's health over time.</h2>
+
+                    <span>Monitor weight, activity levels, health trends and important changes over time in one simple dashboard.</span>
+                    
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Weight monitoring</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Activity tracking</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Health trend insights</span>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="img/media-fuateres/media1.jpeg" alt="baner1">
+            </div>
+
+            <div class="main-cards">
+                <img src="img/media-fuateres/media1.jpeg" alt="baner1">
+
+                <div class="main-cards-text">
+                    <p>Find Veterinarians</p>
+
+                    <h2>Find trusted veterinarians nearby.</h2>
+
+                    <span>Find trusted veterinary clinics, compare ratings, view contact information and get directions in one place.</span>
+
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Trusted veterinary clinics</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Ratings & reviews</span>
+                        </div>
+
+                        <div class="cta-feature">
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+
+                            <span>Directions & contact info</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-text">
+            <h2>Ready to give your pet better care?</h2>
+        </div>
+
+        <div class="cta-information">
+            <p>Join VetPoint+ today and keep your pet healthier with smarter health tracking and AI guidance.</p>
+
+            <div class="cta-buttons">
+                <button class="cta-get">Get Started</button>
+                <button class="cta-learn">Learn More</button>
+            </div>
+        </div>
+
+        <div class="cta-features">
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            
+                <span>AI-powered guidance</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Health tracking</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Medical records</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Find trusted veterinarians</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-text">
+                <h2>VetPoint<span>+</span></h2>
+
+                <p>Smarter pet care, powered by AI. </p>
+            </div>
+
+            <div class="footer-information">
+                <div class="product-column">
+                    <h2>Product</h2>
+
+                    <nav class="info-navigation">
+                        <a href="index.html">Home</a>
+                        <a href="features.html">Features</a>
+                        <a href="#">AI Assistant</a>
+                        <a href="#">Medical Records</a>
+                    </nav>
+                </div>
+
+                <div class="company-column">
+                    <h2>Company</h2>
+
+                    <nav class="info-navigation">
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="resources-column">
+                    <h2>Resources</h2>
+
+                    <nav class="info-navigation">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">FAQ</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="dowload-column">
+                <h2>Dowload Application:</h2>
+
+                <div class="dowload-img">
+                    <img src="img/app/app.jpg" alt="appstore">
+                    <img src="img/app/play.jpg" alt="googleplay">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 VetPoint<span>+</span>. All rights reserved.</p>
+
+            <div class="footer-social">
+                <img src="img/social_media/facebook.svg" alt="facebook icon">
+                <img src="img/social_media/instagram.svg" alt="instagram icon">
+                <img src="img/social_media/tiktok.svg" alt="tiktok icon">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="JS/app.js"></script>
+</body>
+</html>

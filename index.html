@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="vetPointApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetPoint+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header" ng-controller="HeaderController">
+        <div class="header-container">
+            <div class="logo">
+                <h2>VetPoint<span>+</span></h2>
+            </div>
+
+            <nav class="navigation" ng-if="!auth.isLoggedIn">
+                <a href="index.html" class="active">Home</a>
+                <a href="features.html">Features</a>
+                <a href="ai_assistant.html">AI Assistant</a>
+                <a href="about.html">About</a>
+            </nav>
+
+            <nav class="navigation" ng-if="auth.isLoggedIn">
+                <a href="index.html" class="active">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#">My Pets</a>
+                <a href="#">AI Assistant</a>
+                <a href="#">History</a>
+            </nav>
+
+            <div class="header-actions" ng-if="!auth.isLoggedIn">
+                <button class="login-bnt" ng-click="login()">Log in</button>
+                <button class="join-btn">Join Beta</button>
+            </div>     
+
+            <div class="header-actions" ng-if="auth.isLoggedIn">
+                <button class="notification-btn">🔔</button>
+
+                <button class="profile-btn">D</button>
+
+                <button class="login-bnt" ng-click="logout()">Logout</button>
+            </div>  
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h2>Smarter pet care, powered <span>by</span> AI.</h2>
+
+                    <p>Track your pet's health, understand symptoms, and get AI-powered guidance whenever you need it.</p>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="join-btn">Get Started</button>
+                    <button class="login-bnt" id="LearnBtn">Learn More</button>
+                </div>
+
+                <p class="hero-p">No credit card <span>required</span>.</p>
+            </div>
+
+            <div class="hero-img">
+                <img src="img/baner/phone.png" alt="phone">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="trust">
+        <div class="trust-container">
+            <div class="trust-text">
+                <h2>One place for your pet's health.</h2>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-info">
+                    <h2>AI-powered guidance</h2>
+
+                    <p>Understand symptoms with AI.</p>
+                </div>
+
+                <div class="trust-info">
+                    <h2>Health tracking</h2>
+
+                    <p>Keep your pet's health organized.</p>
+                </div>
+
+                <div class="trust-info">
+                    <h2>24/7 access</h2>
+
+                    <p>Guidance whenever you need it.</p>
+                </div>
+
+                <div class="trust-info">
+                    <h2>Veterinary support</h2>
+
+                    <p>Find professional care when needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="work-container">
+            <div class="work-text">
+                <h2>HOW IT WORKS</h2>
+
+                <p>Pet care, made simpler.</p>
+
+                <span>From a question to the right next step.</span>
+            </div>
+
+            <div class="work-grid">
+                <div class="work-info">
+                    <h2>01</h2>
+
+                    <p>Describe the problem</p>
+
+                    <span>Tell VetPoint+ what you're noticing...</span>
+                </div>
+
+                <div class="work-info">
+                    <h2>02</h2>
+
+                    <p>Understand your pet's health</p>
+
+                    <span>AI analyzes the information and helps you understand possible causes and urgency.</span>
+                </div>
+
+                <div class="work-info">
+                    <h2>03</h2>
+
+                    <p>Take the next step</p>
+
+                    <span>Follow helpful recommendations, monitor changes or find professional veterinary care.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pet-section">
+        <div class="pet-container">
+            <div class="pet-text">
+                <h2>PET HEALTH</h2>
+                <p>Everything about your pet, in one place.</p>
+                <span>Keep track of your pet's health, history and important changes.</span>
+            </div>
+
+            <div class="pet-card">
+                <div class="health-header">
+                    <div class="pet-info">
+                        <h3>Max</h3>
+                        <span>Golden Retriever · 4 years old</span>
+                    </div>
+
+                    <div class="pet-status">Healthy</div>
+                </div>
+
+                <div class="health-stats">
+                    <div class="health-stat">
+                        <span>Weight</span>
+                        <strong>28.4 kg</strong>
+                    </div>
+
+                    <div class="health-stat">
+                        <span>Symptoms</span>
+                        <strong>None</strong>
+                    </div>
+
+                    <div class="health-stat">
+                        <span>Vaccinations</span>
+                        <strong>Up to date</strong>
+                    </div>
+                </div>
+
+                <div class="health-overview">
+                    <div class="overview-header">
+                        <div>
+                            <h4>Health overview</h4>
+                            
+                            <div class="overview-value">
+                                <strong>28.4 kg</strong>
+                                <span>+0.6 kg</span>
+                            </div>
+                            
+                            <p>Weight over the last 6 months</p>
+                        </div>
+
+                        <div class="overview-controls">
+                            <button class="period-btn active">6M</button>
+                            <button class="period-btn">1Y</button>
+                            <button class="period-btn">All</button>
+                        </div>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div class="chart-y-axis">
+                            <span>30</span>
+                            <span>29</span>
+                            <span>28</span>
+                            <span>27</span>
+                            <span>26</span>
+                        </div>
+
+                        <div class="chart-area">
+                            <div class="chart-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <svg viewBox="0 0 800 260" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="healthGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#317CFC" stop-opacity="0.15"/>
+                                        <stop offset="100%" stop-color="#317CFC" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path class="chart-fill" fill="url(#healthGradient)" d="M 0 190 C 100 180, 150 165, 220 175 C 300 188, 330 140, 410 145 C 490 150, 520 120, 600 125 C 680 130, 730 90, 800 80 L 800 260 L 0 260 Z"></path>
+
+                                <path class="chart-line" d="M 0 190 C 100 180, 150 165, 220 175 C 300 188, 330 140, 410 145 C 490 150, 520 120, 600 125 C 680 130, 730 90, 800 80"></path>
+
+                                <circle class="chart-point" cx="0" cy="190" r="4"></circle>
+                                <circle class="chart-point" cx="220" cy="175" r="4"></circle>
+                                <circle class="chart-point" cx="410" cy="145" r="4"></circle>
+                                <circle class="chart-point" cx="600" cy="125" r="4"></circle>
+                                <circle class="chart-point active" cx="800" cy="80" r="6"></circle>
+                            </svg>
+
+                            <div class="chart-x-axis">
+                                <span>Mar</span>
+                                <span>Apr</span>
+                                <span>May</span>
+                                <span>Jun</span>
+                                <span>Jul</span>
+                                <span>Aug</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="symptom-checker">
+        <div class="symptom-text">
+            <p>AI SYMPTOM CHECKER</p>
+
+            <h2>Understand your pet's symptoms before your visit.</h2>
+        </div>
+
+        <div class="symptom-grid">
+            <div class="symptop-grid-text">
+                <p>Describe what you notice and receive clear guidance to help you decide what to do next.</p>
+
+                <button id="tryAssistant">Try AI Assistant</button>
+            </div>
+
+            <div class="symptop-grid-img">
+                <img src="img/baner/chat.jpeg" alt="chat">
+            </div>
+        </div>
+    </section>
+
+    <section class="medical-section">
+        <div class="medical-text">
+            <p>MEDICAL RECORDS</p>
+            <h2>Everything about your pet, in one place.</h2>
+        </div>
+
+        <div class="medical-information">
+            <div class="medical-information-text">
+                <h2>Medical History</h2>
+
+                <div class="record-btn">+ Add record</div>
+            </div>
+
+            <div class="medical-card">
+                <div class="medical-left">
+                    <h3>Veterinary Visit</h3>
+
+                    <span>Annual health check</span>
+                </div>
+
+                <p class="status">Healthy</p>
+
+                <span class="date">18 Mar 2026</span>
+            </div>
+
+            <div class="medical-card">
+                <div class="medical-left">
+                    <h3>Rabies Vaccine</h3>
+
+                    <span>Yearly vaccination</span>
+                </div>
+
+                <p class="status">Completed</p>
+
+                <span class="date">12 May 2026</span>
+            </div>
+
+            <div class="medical-card">
+                <div class="medical-left">
+                    <h3>Medication</h3>
+
+                    <span>Antibiotics</span>
+                </div>
+
+                <p class="status">Finished</p>
+
+                <span class="date">7 Days</span>
+            </div>
+
+            <div class="medical-card">
+                <div class="medical-left">
+                    <h3>Blood Test</h3>
+
+                    <span>Routine analysis</span>
+                </div>
+
+                <p class="status">Normal</p>
+
+                <span class="date">View report →</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-text">
+            <h2>Ready to give your pet better care?</h2>
+        </div>
+
+        <div class="cta-information">
+            <p>Join VetPoint+ today and keep your pet healthier with smarter health tracking and AI guidance.</p>
+
+            <div class="cta-buttons">
+                <button class="cta-get">Get Started</button>
+                <button class="cta-learn" id="ctaLearnBtn">Learn More</button>
+            </div>
+        </div>
+
+        <div class="cta-features">
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            
+                <span>AI-powered guidance</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Health tracking</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Medical records</span>
+            </div>
+
+            <div class="cta-feature">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+
+                <span>Find trusted veterinarians</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-text">
+            <p>FAQ</p>
+
+            <h2>Frequently askedquestions</h2>
+
+            <span>Everything you need to know before getting started with VetPoint+.</span>
+        </div>
+
+        <div class="faq-cards">
+            <div class="faq-card">
+                <div class="faq-question">
+                    <p>Is VetPoint+ a replacement for a veterinarian?</p>
+
+                    <span class="faq-icon">+</span>
+                </div>
+
+                <div class="faq-answer">
+                    <p>No. VetPoint+ provides AI-powered guidance and helps you better understand your pet's symptoms, but it does not replace professional veterinary care.</p>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <p>How accurate is the AI assistant? </p>
+
+                    <span class="faq-icon">+</span>
+                </div>
+
+                <div class="faq-answer">
+                    <p>Our AI analyzes the information you provide and offers educational guidance based on trusted veterinary knowledge. For emergencies, always contact a veterinarian immediately.</p>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <p>Can I store my pet's medical records?</p>
+
+                    <span class="faq-icon">+</span>
+                </div>
+
+                <div class="faq-answer">
+                    <p>Yes. You can keep vaccinations, medications, laboratory results and veterinary visits organized in one secure place.</p>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <p>Is my data secure?</p>
+
+                    <span class="faq-icon">+</span>
+                </div>
+
+                <div class="faq-answer">
+                    <p>Absolutely. We use modern security practices to protect your personal information and your pet's medical history.</p>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <p>Is VetPoint+ free to use?</p>
+
+                    <span class="faq-icon">+</span>
+                </div>
+
+                <div class="faq-answer">
+                    <p>Yes. You can get started for free, with additional premium features becoming available in the future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-text">
+                <h2>VetPoint<span>+</span></h2>
+
+                <p>Smarter pet care, powered by AI. </p>
+            </div>
+
+            <div class="footer-information">
+                <div class="product-column">
+                    <h2>Product</h2>
+
+                    <nav class="info-navigation">
+                        <a href="index.html">Home</a>
+                        <a href="features.html">Features</a>
+                        <a href="ai_assistant.html">AI Assistant</a>
+                        <a href="#">Medical Records</a>
+                    </nav>
+                </div>
+
+                <div class="company-column">
+                    <h2>Company</h2>
+
+                    <nav class="info-navigation">
+                        <a href="about.html">About</a>
+                        <a href="#">Contact</a>
+                    </nav>
+                </div>
+
+                <div class="resources-column">
+                    <h2>Resources</h2>
+
+                    <nav class="info-navigation">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">FAQ</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="dowload-column">
+                <h2>Dowload Application:</h2>
+
+                <div class="dowload-img">
+                    <img src="img/app/app.jpg" alt="appstore">
+                    <img src="img/app/play.jpg" alt="googleplay">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 VetPoint<span>+</span>. All rights reserved.</p>
+
+            <div class="footer-social">
+                <img src="img/social_media/facebook.svg" alt="facebook icon">
+                <img src="img/social_media/instagram.svg" alt="instagram icon">
+                <img src="img/social_media/tiktok.svg" alt="tiktok icon">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="JS/app.js"></script>
+    <script src="JS/faq.js"></script>
+    <script src="JS/home.js"></script>
+</body>
+</html>
